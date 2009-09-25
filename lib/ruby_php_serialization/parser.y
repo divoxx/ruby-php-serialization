@@ -30,10 +30,14 @@ rule
 									
 	object					: 'O' ':' NUMBER ':' STRING ':' NUMBER ':' '{' attribute_list '}' 
 										{ 
-											result = Object.const_get(val[4]).new
-
-											val[9].each do |(attr_name, value)|
-												result.instance_variable_set("@#{attr_name}", value)
+											if Object.const_defined?(val[4])
+												result = Object.const_get(val[4]).new
+												
+												val[9].each do |(attr_name, value)|
+													result.instance_variable_set("@#{attr_name}", value)
+												end
+											else
+												result = Struct.new(val[4], *val[9].map { |(k,v)| k.to_sym }).new(*val[9].map { |(k,v)| v })
 											end
 										}
 									;

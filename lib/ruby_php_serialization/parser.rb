@@ -11,7 +11,7 @@ require 'ruby_php_serialization/tokenizer'
 module RubyPhpSerialization
   class Parser < Racc::Parser
 
-module_eval(<<'...end parser.y/module_eval...', 'parser.y', 65)
+module_eval(<<'...end parser.y/module_eval...', 'parser.y', 69)
   
 	def parse(string)
 		@tokenizer = Tokenizer.new(string)
@@ -273,45 +273,49 @@ module_eval(<<'.,.,', 'parser.y', 27)
 
 module_eval(<<'.,.,', 'parser.y', 32)
   def _reduce_14(val, _values, result)
-    											result = Object.const_get(val[4]).new
-
-											val[9].each do |(attr_name, value)|
-												result.instance_variable_set("@#{attr_name}", value)
+    											if Object.const_defined?(val[4])
+												result = Object.const_get(val[4]).new
+												
+												val[9].each do |(attr_name, value)|
+													result.instance_variable_set("@#{attr_name}", value)
+												end
+											else
+												result = Struct.new(val[4], *val[9].map { |(k,v)| k.to_sym }).new(*val[9].map { |(k,v)| v })
 											end
 										
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 40)
+module_eval(<<'.,.,', 'parser.y', 44)
   def _reduce_15(val, _values, result)
      result = val[0] << val[1] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 41)
+module_eval(<<'.,.,', 'parser.y', 45)
   def _reduce_16(val, _values, result)
      result = [] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 44)
+module_eval(<<'.,.,', 'parser.y', 48)
   def _reduce_17(val, _values, result)
      @numeric_array = false unless val[0].is_a?(Integer); result = [val[0], val[2]] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 47)
+module_eval(<<'.,.,', 'parser.y', 51)
   def _reduce_18(val, _values, result)
      @numeric_array = true 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 49)
+module_eval(<<'.,.,', 'parser.y', 53)
   def _reduce_19(val, _values, result)
     											if @numeric_array
 												result = []
