@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
      "spec/ruby_php_serialization_spec.rb",
      "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/divoxx/ruby_php_serialization}
+  s.homepage = %q{http://github.com/divoxx/ruby-php-serialization}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.4}

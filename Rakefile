@@ -8,7 +8,7 @@ begin
     gem.summary     = %Q{PHP's serialization implemenatation for ruby}
     gem.description = %Q{TODO: longer description of your gem}
     gem.email       = "divoxx@gmail.com"
-    gem.homepage    = "http://github.com/divoxx/ruby_php_serialization"
+    gem.homepage    = "http://github.com/divoxx/ruby-php-serialization"
     gem.authors     = ["Rodrigo Kochenburger"]
     gem.add_development_dependency "rspec"
     gem.add_development_dependency "cucumber"
@@ -57,7 +57,7 @@ Rake::RDocTask.new do |rdoc|
   end
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "ruby_php_serialization #{version}"
+  rdoc.title = "ruby-php-serialization #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
