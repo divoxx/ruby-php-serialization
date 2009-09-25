@@ -9,6 +9,7 @@ rule
 				 			| integer  { result = val[0] }
 				 			| double   { result = val[0] }
 				 			| array    { result = val[0] }
+							| string   { result = val[0] }
 				 			;          
 	        		
 	null 				: 'N' { result = nil }
