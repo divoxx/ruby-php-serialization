@@ -42,8 +42,7 @@ rule
 									|													 { result = [] }
 									;
 
-	attribute				: data ';' data			{ @numeric_array = false unless val[0].is_a?(Integer); result = [val[0], val[2]] }
-									| ';' data ';' data	{ @numeric_array = false unless val[1].is_a?(Integer); result = [val[1], val[3]] }
+	attribute				: data ';' data	';'	{ @numeric_array = false unless val[0].is_a?(Integer); result = [val[0], val[2]] }
 									;
 													  				
 	array   				: 'a' ':' NUMBER ':' '{' { @numeric_array = true } attribute_list '}' 

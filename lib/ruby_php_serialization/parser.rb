@@ -11,7 +11,7 @@ require 'ruby_php_serialization/tokenizer'
 module RubyPhpSerialization
   class Parser < Racc::Parser
 
-module_eval(<<'...end parser.y/module_eval...', 'parser.y', 66)
+module_eval(<<'...end parser.y/module_eval...', 'parser.y', 65)
   
 	def parse(string)
 		@tokenizer = Tokenizer.new(string)
@@ -28,64 +28,58 @@ module_eval(<<'...end parser.y/module_eval...', 'parser.y', 66)
 ##### State transition tables begin ###
 
 racc_action_table = [
-    44,     6,     7,    22,    23,    10,    12,    14,    24,     1,
-    25,    43,     5,    44,     6,     7,    26,    27,    10,    12,
-    14,    28,     1,    29,    53,     5,     6,     7,    30,    31,
-    10,    12,    14,    21,     1,     6,     7,     5,    33,    10,
-    12,    14,    34,     1,     6,     7,     5,    35,    10,    12,
-    14,    36,     1,     6,     7,     5,    37,    10,    12,    14,
-    38,     1,    40,    42,     5,    20,    47,    19,    49,    51,
-    18,    17,    32 ]
+     6,     7,    31,    21,    10,    12,    14,    22,     1,     6,
+     7,     5,    23,    10,    12,    14,    24,     1,    25,    50,
+     5,     6,     7,    26,    27,    10,    12,    14,    28,     1,
+     6,     7,     5,    29,    10,    12,    14,    30,     1,    20,
+    43,     5,    32,    33,    34,    35,    36,    37,    38,    40,
+    42,    19,    46,    47,    18,    17,    51 ]
 
 racc_action_check = [
-    41,    41,    41,    10,    12,    41,    41,    41,    14,    41,
-    17,    41,    41,    50,    50,    50,    18,    19,    50,    50,
-    50,    20,    50,    22,    50,    50,    49,    49,    23,    24,
-    49,    49,    49,     9,    49,    44,    44,    49,    26,    44,
-    44,    44,    31,    44,     0,     0,    44,    32,     0,     0,
-     0,    33,     0,    51,    51,     0,    34,    51,    51,    51,
-    35,    51,    38,    40,    51,     8,    42,     7,    46,    48,
-     5,     1,    25 ]
+     0,     0,    24,     9,     0,     0,     0,    10,     0,    48,
+    48,     0,    12,    48,    48,    48,    14,    48,    17,    48,
+    48,    47,    47,    18,    19,    47,    47,    47,    20,    47,
+    41,    41,    47,    22,    41,    41,    41,    23,    41,     8,
+    41,    41,    25,    26,    31,    32,    33,    34,    35,    38,
+    40,     7,    42,    45,     5,     1,    49 ]
 
 racc_action_pointer = [
-    41,    66,   nil,   nil,   nil,    65,   nil,    62,    65,    31,
-    -2,   nil,    -1,   nil,     3,   nil,   nil,     4,    10,    11,
-    21,   nil,    17,    22,    23,    67,    33,   nil,   nil,   nil,
-   nil,    37,    37,    39,    46,    55,   nil,   nil,    56,   nil,
-    58,    -2,    54,   nil,    32,   nil,    66,   nil,    67,    23,
-    11,    50,   nil,   nil,   nil ]
+    -3,    50,   nil,   nil,   nil,    49,   nil,    46,    39,     1,
+     2,   nil,     7,   nil,    11,   nil,   nil,    12,    17,    18,
+    28,   nil,    27,    31,    -4,    37,    38,   nil,   nil,   nil,
+   nil,    39,    35,    34,    37,    43,   nil,   nil,    43,   nil,
+    45,    27,    40,   nil,   nil,    51,   nil,    18,     6,    54,
+   nil,   nil ]
 
 racc_action_default = [
-   -21,   -21,    -6,    -7,    -8,   -21,    -9,   -21,   -21,   -21,
-   -21,    -2,   -21,    -3,   -21,    -4,    -5,   -21,   -21,   -21,
-   -21,    -1,   -21,   -21,   -21,   -21,   -21,   -10,    55,   -11,
-   -12,   -21,   -21,   -21,   -21,   -21,   -19,   -13,   -21,   -16,
-   -21,   -21,   -21,   -20,   -21,   -15,   -21,   -16,   -21,   -21,
-   -21,   -21,   -17,   -14,   -18 ]
+   -20,   -20,    -6,    -7,    -8,   -20,    -9,   -20,   -20,   -20,
+   -20,    -2,   -20,    -3,   -20,    -4,    -5,   -20,   -20,   -20,
+   -20,    -1,   -20,   -20,   -20,   -20,   -20,   -10,    52,   -11,
+   -12,   -20,   -20,   -20,   -20,   -20,   -18,   -13,   -20,   -16,
+   -20,   -20,   -20,   -19,   -15,   -20,   -16,   -20,   -20,   -20,
+   -14,   -17 ]
 
 racc_goto_table = [
-     9,    41,     8,    39,   nil,   nil,   nil,   nil,   nil,    50,
+     9,    41,     8,    39,   nil,   nil,   nil,   nil,    48,   nil,
    nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,
    nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,
    nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,
-   nil,   nil,   nil,   nil,    48,   nil,   nil,   nil,   nil,    52,
-   nil,    54 ]
+   nil,   nil,   nil,   nil,   nil,   nil,   nil,    49 ]
 
 racc_goto_check = [
-     2,    10,     1,    12,   nil,   nil,   nil,   nil,   nil,    10,
+     2,    10,     1,    12,   nil,   nil,   nil,   nil,    10,   nil,
    nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,
    nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,
    nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,
-   nil,   nil,   nil,   nil,     2,   nil,   nil,   nil,   nil,     2,
-   nil,     2 ]
+   nil,   nil,   nil,   nil,   nil,   nil,   nil,     2 ]
 
 racc_goto_pointer = [
    nil,     2,     0,   nil,   nil,   nil,   nil,   nil,   nil,   nil,
    -38,   nil,   -33 ]
 
 racc_goto_default = [
-   nil,   nil,    46,    11,    13,    15,    16,     2,     3,     4,
-   nil,    45,   nil ]
+   nil,   nil,    45,    11,    13,    15,    16,     2,     3,     4,
+   nil,    44,   nil ]
 
 racc_reduce_table = [
   0, 0, :racc_error,
@@ -105,14 +99,13 @@ racc_reduce_table = [
   11, 24, :_reduce_14,
   2, 25, :_reduce_15,
   0, 25, :_reduce_16,
-  3, 26, :_reduce_17,
-  4, 26, :_reduce_18,
-  0, 27, :_reduce_19,
-  8, 22, :_reduce_20 ]
+  4, 26, :_reduce_17,
+  0, 27, :_reduce_18,
+  8, 22, :_reduce_19 ]
 
-racc_reduce_n = 21
+racc_reduce_n = 20
 
-racc_shift_n = 55
+racc_shift_n = 52
 
 racc_token_table = {
   false => 0,
@@ -311,22 +304,15 @@ module_eval(<<'.,.,', 'parser.y', 44)
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 45)
+module_eval(<<'.,.,', 'parser.y', 47)
   def _reduce_18(val, _values, result)
-     @numeric_array = false unless val[1].is_a?(Integer); result = [val[1], val[3]] 
-    result
-  end
-.,.,
-
-module_eval(<<'.,.,', 'parser.y', 48)
-  def _reduce_19(val, _values, result)
      @numeric_array = true 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 50)
-  def _reduce_20(val, _values, result)
+module_eval(<<'.,.,', 'parser.y', 49)
+  def _reduce_19(val, _values, result)
     											if @numeric_array
 												result = []
 												val[6].each { |(i,v)| result[i] = v }
