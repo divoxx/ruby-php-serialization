@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ruby_php_serialization}
-  s.version = "0.0.0"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Rodrigo Kochenburger"]
@@ -27,6 +27,11 @@ Gem::Specification.new do |s|
      "features/step_definitions/ruby_php_serialization_steps.rb",
      "features/support/env.rb",
      "lib/ruby_php_serialization.rb",
+     "lib/ruby_php_serialization/parser.rb",
+     "lib/ruby_php_serialization/parser.y",
+     "lib/ruby_php_serialization/tokenizer.rb",
+     "lib/ruby_php_serialization/unserializer.rb",
+     "ruby_php_serialization.gemspec",
      "spec/ruby_php_serialization_spec.rb",
      "spec/spec_helper.rb"
   ]
