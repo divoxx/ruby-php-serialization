@@ -1,55 +1,62 @@
 class RubyPhpSerialization::Parser
 rule
 
-	serialization : object ';' { @object = val[0] }
-								;
+	serialization 	: data ';' { @object = val[0] }
+									;
 								
-	object 			: null		 { result = val[0] }
-				 			| bool		 { result = val[0] }
-				 			| integer  { result = val[0] }
-				 			| double   { result = val[0] }
-				 			| array    { result = val[0] }
-							| string   { result = val[0] }
-				 			;          
-	        		
-	null 				: 'N' { result = nil }
-			 				;
-			    		
-	bool 				: 'b' ':' NUMBER { result = Integer(val[2]) > 0 }
-			 				;
-			    		
-	integer 		: 'i' ':' NUMBER { result = Integer(val[2]) }
-							;
-							
-	double 			: 'd' ':' NUMBER { result = Float(val[2]) }
-				 			;
-				
-	string 	 		: 's' ':' NUMBER ':' STRING { result = val[4] }
-							;
-				  		
-	array   		: 'a' ':' NUMBER ':' '{' { @numeric_array = true } array_items '}' 
-								{ 
-									if @numeric_array
-										result = []
-										val[6].each { |(i,v)| result[i] = v }
-									else
-										result = Hash[*val[6].flatten]
-									end
-								}
-							;
-							
-  array_items : array_items array_item { result = val[0] << val[1] }
-							|												 { result = [] }
-							;
-					
-	array_item 	: array_key ';' object			{ result = [val[0], val[2]] }
-	 						| ';' array_key ';' object  { result = [val[1], val[3]] }
-							;
-							
-	array_key   : integer	{ result = val[0] }
-							|	string  { @numeric_array = false; result = val[0] }
-							;
-								
+	data  					: null		 { result = val[0] }
+				 					| bool		 { result = val[0] }
+				 					| integer  { result = val[0] }
+				 					| double   { result = val[0] }
+				 					| array    { result = val[0] }
+									| string   { result = val[0] }
+									| object   { result = val[0] }
+				 					;          
+	        				
+	null 						: 'N' { result = nil }
+			 						;
+			    				
+	bool 						: 'b' ':' NUMBER { result = Integer(val[2]) > 0 }
+			 						;
+			    				
+	integer 				: 'i' ':' NUMBER { result = Integer(val[2]) }
+									;
+									
+	double 					: 'd' ':' NUMBER { result = Float(val[2]) }
+				 					;
+				      		
+	string 	 				: 's' ':' NUMBER ':' STRING { result = val[4] }
+									;
+									
+	object					: 'O' ':' NUMBER ':' STRING ':' NUMBER ':' '{' attribute_list '}' 
+										{ 
+											result = Object.const_get(val[4]).new
+
+											val[9].each do |(attr_name, value)|
+												result.instance_variable_set("@#{attr_name}", value)
+											end
+										}
+									;
+
+	attribute_list 	: attribute_list attribute { result = val[0] << val[1] }
+									|													 { result = [] }
+									;
+
+	attribute				: data ';' data			{ @numeric_array = false unless val[0].is_a?(Integer); result = [val[0], val[2]] }
+									| ';' data ';' data	{ @numeric_array = false unless val[1].is_a?(Integer); result = [val[1], val[3]] }
+									;
+													  				
+	array   				: 'a' ':' NUMBER ':' '{' { @numeric_array = true } attribute_list '}' 
+										{ 
+											if @numeric_array
+												result = []
+												val[6].each { |(i,v)| result[i] = v }
+											else
+												result = Hash[*val[6].flatten]
+											end
+										}
+									;
+																										
 end
 
 ---- header ----
