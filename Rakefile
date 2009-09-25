@@ -4,14 +4,16 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "ruby_php_serialization"
-    gem.summary = %Q{PHP's serialization implemenatation for ruby}
+    gem.name        = "ruby_php_serialization"
+    gem.summary     = %Q{PHP's serialization implemenatation for ruby}
     gem.description = %Q{TODO: longer description of your gem}
-    gem.email = "divoxx@gmail.com"
-    gem.homepage = "http://github.com/divoxx/ruby_php_serialization"
-    gem.authors = ["Rodrigo Kochenburger"]
+    gem.email       = "divoxx@gmail.com"
+    gem.homepage    = "http://github.com/divoxx/ruby_php_serialization"
+    gem.authors     = ["Rodrigo Kochenburger"]
     gem.add_development_dependency "rspec"
     gem.add_development_dependency "cucumber"
+    gem.add_development_dependency "racc"
+
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
@@ -59,3 +61,11 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+
+file 'lib/ruby_php_serialization/parser.rb' => 'lib/ruby_php_serialization/parser.y' do |t|
+  `racc -o #{t.name} #{t.prerequisites[0]}`
+end
+
+desc "Compile all the necessary files, such as .y grammar files"
+task :compile => ['lib/ruby_php_serialization/parser.rb']
