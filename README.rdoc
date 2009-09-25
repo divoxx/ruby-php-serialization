@@ -1,4 +1,4 @@
-= ruby_php_serialization
+= RubyPhpSerialization
 
 Ruby implementation of PHP's serialization. This is special useful for reading PHP session files.
 
