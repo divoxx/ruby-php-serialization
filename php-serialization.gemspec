@@ -27,11 +27,13 @@ Gem::Specification.new do |s|
      "features/step_definitions/ruby_php_serialization_steps.rb",
      "features/support/env.rb",
      "lib/php_serialization.rb",
-     "lib/php_serialization/parser.rb",
-     "lib/php_serialization/parser.y",
      "lib/php_serialization/tokenizer.rb",
+     "lib/php_serialization/unserializer.rb",
+     "lib/php_serialization/unserializer.y",
      "php-serialization.gemspec",
-     "spec/spec_helper.rb"
+     "spec/spec.opts",
+     "spec/spec_helper.rb",
+     "spec/unserialization_spec.rb"
   ]
   s.homepage = %q{http://github.com/divoxx/ruby-php-serialization}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -39,8 +41,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.4}
   s.summary = %q{PHP's serialization implementation for ruby}
   s.test_files = [
-    "spec/php_serialization/parser.rb",
-     "spec/spec_helper.rb"
+    "spec/spec_helper.rb",
+     "spec/unserialization_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
