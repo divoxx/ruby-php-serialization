@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
      "lib/php_serialization/parser.y",
      "lib/php_serialization/tokenizer.rb",
      "php-serialization.gemspec",
+     "ruby-php-serialization.gemspec",
      "spec/php_serialization_spec.rb",
      "spec/spec_helper.rb"
   ]
