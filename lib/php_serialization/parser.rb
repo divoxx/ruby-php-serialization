@@ -8,7 +8,7 @@ require 'racc/parser.rb'
 
 require 'php_serialization/tokenizer'
 
-module RubyPhpSerialization
+module PhpSerialization
   class Parser < Racc::Parser
 
 module_eval(<<'...end parser.y/module_eval...', 'parser.y', 69)
@@ -333,4 +333,4 @@ def _reduce_none(val, _values, result)
 end
 
   end   # class Parser
-  end   # module RubyPhpSerialization
+  end   # module PhpSerialization

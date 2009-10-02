@@ -1,4 +1,4 @@
-class RubyPhpSerialization::Parser
+class PhpSerialization::Parser
 rule
 
   serialization   : data ';' { @object = val[0] }

@@ -1,4 +1,4 @@
-= RubyPhpSerialization
+= PhpSerialization
 
 Ruby implementation of PHP's serialization. This is special useful for reading PHP session files.
 
@@ -6,18 +6,18 @@ Ruby implementation of PHP's serialization. This is special useful for reading P
 
 Primitive values
 
-  RubyPhpSerialization.php_unserialize('i:10;')       # => 10
-  RubyPhpSerialization.php_unserialize('s:4:"Name";') # => "Name"
-  RubyPhpSerialization.php_unserialize('b:1;')        # => true
-  RubyPhpSerialization.php_unserialize('N;')          # => nil
+  PhpSerialization.php_unserialize('i:10;')       # => 10
+  PhpSerialization.php_unserialize('s:4:"Name";') # => "Name"
+  PhpSerialization.php_unserialize('b:1;')        # => true
+  PhpSerialization.php_unserialize('N;')          # => nil
   
 Array
 
-  RubyPhpSerialization.php_unserialize('a:2:{i:0;b:1;i:1;s:3:"foo";};') # => [true, "foo"]
+  PhpSerialization.php_unserialize('a:2:{i:0;b:1;i:1;s:3:"foo";};') # => [true, "foo"]
   
 Hash
 
-  RubyPhpSerialization.php_unserialize('a:2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;};') # => {"name" => "Rodrigo", "age" => 23}
+  PhpSerialization.php_unserialize('a:2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;};') # => {"name" => "Rodrigo", "age" => 23}
   
 Object
 
@@ -25,13 +25,13 @@ Object
     attr_accessor :name, :age
   end
   
-  person = RubyPhpSerialization.php_unserialize('O:6:"Person":2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;};')
+  person = PhpSerialization.php_unserialize('O:6:"Person":2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;};')
   person.name # => "Rodrigo"
   person.age  # => 23
   
 Object without class will map to a Struct
 
-  person = RubyPhpSerialization.php_unserialize('O:6:"Person":2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;};')
+  person = PhpSerialization.php_unserialize('O:6:"Person":2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;};')
   person.class # => Struct::Person
   person.name  # => "Rodrigo"
   person.age   # => 23

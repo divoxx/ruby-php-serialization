@@ -1,4 +1,4 @@
-module RubyPhpSerialization
+module PhpSerialization
   class Tokenizer
     def initialize(string)
       @string = string
