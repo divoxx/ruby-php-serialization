@@ -4,7 +4,7 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name        = "ruby-php-serialization"
+    gem.name        = "php-serialization"
     gem.summary     = %Q{PHP's serialization implemenatation for ruby}
     gem.description = %Q{TODO: longer description of your gem}
     gem.email       = "divoxx@gmail.com"

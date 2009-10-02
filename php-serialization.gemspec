@@ -4,12 +4,12 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{ruby-php-serialization}
+  s.name = %q{php-serialization}
   s.version = "0.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Rodrigo Kochenburger"]
-  s.date = %q{2009-09-25}
+  s.date = %q{2009-10-02}
   s.description = %q{TODO: longer description of your gem}
   s.email = %q{divoxx@gmail.com}
   s.extra_rdoc_files = [
@@ -26,12 +26,6 @@ Gem::Specification.new do |s|
      "features/ruby_php_serialization.feature",
      "features/step_definitions/ruby_php_serialization_steps.rb",
      "features/support/env.rb",
-     "lib/ruby_php_serialization.rb",
-     "lib/ruby_php_serialization/parser.rb",
-     "lib/ruby_php_serialization/parser.y",
-     "lib/ruby_php_serialization/tokenizer.rb",
-     "ruby-php-serialization.gemspec",
-     "spec/ruby_php_serialization_spec.rb",
      "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/divoxx/ruby-php-serialization}
@@ -40,7 +34,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.4}
   s.summary = %q{PHP's serialization implemenatation for ruby}
   s.test_files = [
-    "spec/ruby_php_serialization_spec.rb",
+    "spec/php_serialization_spec.rb",
      "spec/spec_helper.rb"
   ]
 
