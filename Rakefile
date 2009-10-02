@@ -57,15 +57,15 @@ Rake::RDocTask.new do |rdoc|
   end
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "ruby-php-serialization #{version}"
+  rdoc.title = "Ruby's PhpSerialization #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
 
-file 'lib/ruby_php_serialization/parser.rb' => 'lib/ruby_php_serialization/parser.y' do |t|
+file 'lib/php_serialization/parser.rb' => 'lib/php_serialization/parser.y' do |t|
   `racc -o #{t.name} #{t.prerequisites[0]}`
 end
 
 desc "Compile all the necessary files, such as .y grammar files"
-task :compile => ['lib/ruby_php_serialization/parser.rb']
+task :compile => ['lib/php_serialization/parser.rb']

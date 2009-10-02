@@ -6,7 +6,7 @@
 
 require 'racc/parser.rb'
 
-require 'ruby_php_serialization/tokenizer'
+require 'php_serialization/tokenizer'
 
 module RubyPhpSerialization
   class Parser < Racc::Parser

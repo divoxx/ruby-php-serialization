@@ -23,15 +23,14 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
-     "features/ruby_php_serialization.feature",
-     "features/step_definitions/ruby_php_serialization_steps.rb",
+     "features/php_serialization.feature",
+     "features/step_definitions/php_serialization_steps.rb",
      "features/support/env.rb",
      "lib/php_serialization.rb",
      "lib/php_serialization/parser.rb",
      "lib/php_serialization/parser.y",
      "lib/php_serialization/tokenizer.rb",
      "php-serialization.gemspec",
-     "ruby-php-serialization.gemspec",
      "spec/php_serialization_spec.rb",
      "spec/spec_helper.rb"
   ]

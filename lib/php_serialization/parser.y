@@ -63,7 +63,7 @@ rule
 end
 
 ---- header ----
-require 'ruby_php_serialization/tokenizer'
+require 'php_serialization/tokenizer'
 
 ---- inner ----
   
