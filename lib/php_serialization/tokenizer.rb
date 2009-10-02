@@ -4,17 +4,18 @@ module PhpSerialization
       @string = string
     end
 
-    def next_token
-      token = nil
-
-      token = case @string
-      when /\A[0-9]+(\.[0-9]+)?/m then [:NUMBER, $&]
-      when /\A"([^"]*)"/m         then [:STRING, $1]
-      when /\A[^\s]/m             then [$&, $&]
+    def each
+      while !@string.empty?
+        token = case @string
+        when /\A[0-9]+(\.[0-9]+)?/m then yield([:NUMBER, $&])
+        when /\A"([^"]*)"/m         then yield([:STRING, $1])
+        when /\A[^\s]/m             then yield([$&, $&])
+        end
+        
+        @string = $'
       end
-      @string = $'
-
-      token unless token.nil?
+      
+      yield([false, '$'])
     end
   end
 end

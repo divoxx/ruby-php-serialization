@@ -1,4 +1,4 @@
-class PhpSerialization::Parser
+class PhpSerialization::Unserializer
 rule
 
   serialization   : data ';' { @object = val[0] }
@@ -66,13 +66,17 @@ end
 require 'php_serialization/tokenizer'
 
 ---- inner ----
+  def self.load(string)
+    new.load(string)
+  end
+  
   def initialize(tokenizer_klass = Tokenizer)
     @tokenizer_klass = tokenizer_klass
   end
   
   def load(string)
     @tokenizer = @tokenizer_klass.new(string)
-    do_parse
+    yyparse(@tokenizer, :each)
     return @object
   ensure
     @tokenizer = nil

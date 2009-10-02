@@ -9,16 +9,20 @@ require 'racc/parser.rb'
 require 'php_serialization/tokenizer'
 
 module PhpSerialization
-  class Parser < Racc::Parser
+  class Unserializer < Racc::Parser
 
-module_eval(<<'...end parser.y/module_eval...', 'parser.y', 69)
+module_eval(<<'...end unserializer.y/module_eval...', 'unserializer.y', 69)
+  def self.load(string)
+    new.load(string)
+  end
+  
   def initialize(tokenizer_klass = Tokenizer)
     @tokenizer_klass = tokenizer_klass
   end
   
-  def parse(string)
+  def load(string)
     @tokenizer = @tokenizer_klass.new(string)
-    do_parse
+    yyparse(@tokenizer, :each)
     return @object
   ensure
     @tokenizer = nil
@@ -27,7 +31,7 @@ module_eval(<<'...end parser.y/module_eval...', 'parser.y', 69)
   def next_token
     @tokenizer.next_token
   end
-...end parser.y/module_eval...
+...end unserializer.y/module_eval...
 ##### State transition tables begin ###
 
 racc_action_table = [
@@ -183,98 +187,98 @@ Racc_debug_parser = false
 
 # reduce 0 omitted
 
-module_eval(<<'.,.,', 'parser.y', 3)
+module_eval(<<'.,.,', 'unserializer.y', 3)
   def _reduce_1(val, _values, result)
      @object = val[0] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 6)
+module_eval(<<'.,.,', 'unserializer.y', 6)
   def _reduce_2(val, _values, result)
      result = val[0] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 7)
+module_eval(<<'.,.,', 'unserializer.y', 7)
   def _reduce_3(val, _values, result)
      result = val[0] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 8)
+module_eval(<<'.,.,', 'unserializer.y', 8)
   def _reduce_4(val, _values, result)
      result = val[0] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 9)
+module_eval(<<'.,.,', 'unserializer.y', 9)
   def _reduce_5(val, _values, result)
      result = val[0] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 10)
+module_eval(<<'.,.,', 'unserializer.y', 10)
   def _reduce_6(val, _values, result)
      result = val[0] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 11)
+module_eval(<<'.,.,', 'unserializer.y', 11)
   def _reduce_7(val, _values, result)
      result = val[0] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 12)
+module_eval(<<'.,.,', 'unserializer.y', 12)
   def _reduce_8(val, _values, result)
      result = val[0] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 15)
+module_eval(<<'.,.,', 'unserializer.y', 15)
   def _reduce_9(val, _values, result)
      result = nil 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 18)
+module_eval(<<'.,.,', 'unserializer.y', 18)
   def _reduce_10(val, _values, result)
      result = Integer(val[2]) > 0 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 21)
+module_eval(<<'.,.,', 'unserializer.y', 21)
   def _reduce_11(val, _values, result)
      result = Integer(val[2]) 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 24)
+module_eval(<<'.,.,', 'unserializer.y', 24)
   def _reduce_12(val, _values, result)
      result = Float(val[2]) 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 27)
+module_eval(<<'.,.,', 'unserializer.y', 27)
   def _reduce_13(val, _values, result)
      result = val[4] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 32)
+module_eval(<<'.,.,', 'unserializer.y', 32)
   def _reduce_14(val, _values, result)
                           if Object.const_defined?(val[4])
                         result = Object.const_get(val[4]).new
@@ -290,35 +294,35 @@ module_eval(<<'.,.,', 'parser.y', 32)
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 44)
+module_eval(<<'.,.,', 'unserializer.y', 44)
   def _reduce_15(val, _values, result)
      result = val[0] << val[1] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 45)
+module_eval(<<'.,.,', 'unserializer.y', 45)
   def _reduce_16(val, _values, result)
      result = [] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 48)
+module_eval(<<'.,.,', 'unserializer.y', 48)
   def _reduce_17(val, _values, result)
      @numeric_array = false unless val[0].is_a?(Integer); result = [val[0], val[2]] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 51)
+module_eval(<<'.,.,', 'unserializer.y', 51)
   def _reduce_18(val, _values, result)
      @numeric_array = true 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 53)
+module_eval(<<'.,.,', 'unserializer.y', 53)
   def _reduce_19(val, _values, result)
                           if @numeric_array
                         result = []
@@ -335,5 +339,5 @@ def _reduce_none(val, _values, result)
   val[0]
 end
 
-  end   # class Parser
+  end   # class Unserializer
   end   # module PhpSerialization
