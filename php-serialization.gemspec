@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Rodrigo Kochenburger"]
   s.date = %q{2009-10-02}
-  s.description = %q{TODO: longer description of your gem}
+  s.description = %q{Pure Ruby implementation of php's methods: serialize() and unserializer()}
   s.email = %q{divoxx@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -23,8 +23,8 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
-     "features/php_serialization.feature",
-     "features/step_definitions/php_serialization_steps.rb",
+     "features/ruby_php_serialization.feature",
+     "features/step_definitions/ruby_php_serialization_steps.rb",
      "features/support/env.rb",
      "lib/php_serialization.rb",
      "lib/php_serialization/parser.rb",
@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.4}
-  s.summary = %q{PHP's serialization implemenatation for ruby}
+  s.summary = %q{PHP's serialization implementation for ruby}
   s.test_files = [
     "spec/php_serialization_spec.rb",
      "spec/spec_helper.rb"

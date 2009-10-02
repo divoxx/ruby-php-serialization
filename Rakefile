@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name        = "php-serialization"
-    gem.summary     = %Q{PHP's serialization implemenatation for ruby}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary     = %Q{PHP's serialization implementation for ruby}
+    gem.description = %Q{Pure Ruby implementation of php's methods: serialize() and unserializer()}
     gem.email       = "divoxx@gmail.com"
     gem.homepage    = "http://github.com/divoxx/ruby-php-serialization"
     gem.authors     = ["Rodrigo Kochenburger"]
