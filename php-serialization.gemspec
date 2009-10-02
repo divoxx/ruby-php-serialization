@@ -31,7 +31,6 @@ Gem::Specification.new do |s|
      "lib/php_serialization/parser.y",
      "lib/php_serialization/tokenizer.rb",
      "php-serialization.gemspec",
-     "spec/php_serialization_spec.rb",
      "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/divoxx/ruby-php-serialization}
@@ -40,7 +39,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.4}
   s.summary = %q{PHP's serialization implementation for ruby}
   s.test_files = [
-    "spec/php_serialization_spec.rb",
+    "spec/php_serialization/parser.rb",
      "spec/spec_helper.rb"
   ]
 
@@ -51,7 +50,7 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<cucumber>, [">= 0"])
-      s.add_development_dependency(%q<racc>, [">= 0"])
+      s.add_runtime_dependency(%q<racc>, [">= 0"])
     else
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<cucumber>, [">= 0"])
