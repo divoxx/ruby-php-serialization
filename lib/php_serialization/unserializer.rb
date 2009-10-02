@@ -12,14 +12,17 @@ module PhpSerialization
   class Parser < Racc::Parser
 
 module_eval(<<'...end parser.y/module_eval...', 'parser.y', 69)
+  def initialize(tokenizer_klass = Tokenizer)
+    @tokenizer_klass = tokenizer_klass
+  end
   
-	def parse(string)
-		@tokenizer = Tokenizer.new(string)
-		do_parse
-		return @object
-	ensure
-		@tokenizer = nil
-	end
+  def parse(string)
+    @tokenizer = @tokenizer_klass.new(string)
+    do_parse
+    return @object
+  ensure
+    @tokenizer = nil
+  end
   
   def next_token
     @tokenizer.next_token
@@ -273,16 +276,16 @@ module_eval(<<'.,.,', 'parser.y', 27)
 
 module_eval(<<'.,.,', 'parser.y', 32)
   def _reduce_14(val, _values, result)
-    											if Object.const_defined?(val[4])
-												result = Object.const_get(val[4]).new
-												
-												val[9].each do |(attr_name, value)|
-													result.instance_variable_set("@#{attr_name}", value)
-												end
-											else
-												result = Struct.new(val[4], *val[9].map { |(k,v)| k.to_sym }).new(*val[9].map { |(k,v)| v })
-											end
-										
+                          if Object.const_defined?(val[4])
+                        result = Object.const_get(val[4]).new
+                        
+                        val[9].each do |(attr_name, value)|
+                          result.instance_variable_set("@#{attr_name}", value)
+                        end
+                      else
+                        result = Struct.new(val[4], *val[9].map { |(k,v)| k.to_sym }).new(*val[9].map { |(k,v)| v })
+                      end
+                    
     result
   end
 .,.,
@@ -317,13 +320,13 @@ module_eval(<<'.,.,', 'parser.y', 51)
 
 module_eval(<<'.,.,', 'parser.y', 53)
   def _reduce_19(val, _values, result)
-    											if @numeric_array
-												result = []
-												val[6].each { |(i,v)| result[i] = v }
-											else
-												result = Hash[*val[6].flatten]
-											end
-										
+                          if @numeric_array
+                        result = []
+                        val[6].each { |(i,v)| result[i] = v }
+                      else
+                        result = Hash[*val[6].flatten]
+                      end
+                    
     result
   end
 .,.,

@@ -66,9 +66,12 @@ end
 require 'php_serialization/tokenizer'
 
 ---- inner ----
+  def initialize(tokenizer_klass = Tokenizer)
+    @tokenizer_klass = tokenizer_klass
+  end
   
-  def parse(string)
-    @tokenizer = Tokenizer.new(string)
+  def load(string)
+    @tokenizer = @tokenizer_klass.new(string)
     do_parse
     return @object
   ensure

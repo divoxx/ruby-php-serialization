@@ -1,13 +1,17 @@
 $:.unshift(File.dirname(__FILE__))
-require 'php_serialization/parser'
+require 'php_serialization/unserializer'
 
 module PhpSerialization
   class << self
-    def unserialize(str)
-      Parser.new.parse(str)
+    def unserializer
+      @unserializer ||= Unserializer.new
     end
     
-    alias :load :unserialize
-    alias :restore :unserialize
+    def load(str)
+      unserializer.load(str)
+    end
+    
+    alias :unserialize :load
+    alias :restore :load
   end
 end
