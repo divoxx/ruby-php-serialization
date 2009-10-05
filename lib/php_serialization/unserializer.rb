@@ -11,7 +11,7 @@ require 'php_serialization/tokenizer'
 module PhpSerialization
   class Unserializer < Racc::Parser
 
-module_eval(<<'...end unserializer.y/module_eval...', 'unserializer.y', 66)
+module_eval(<<'...end unserializer.y/module_eval...', 'unserializer.y', 68)
   def initialize(tokenizer_klass = Tokenizer)
     @tokenizer_klass = tokenizer_klass
   end
@@ -267,49 +267,51 @@ module_eval(<<'.,.,', 'unserializer.y', 24)
 
 module_eval(<<'.,.,', 'unserializer.y', 29)
   def _reduce_13(val, _values, result)
-                          if Object.const_defined?(val[4])
+                          if eval("defined?(#{val[4]})")
                         result = Object.const_get(val[4]).new
                         
                         val[9].each do |(attr_name, value)|
                           result.instance_variable_set("@#{attr_name.gsub(/(^\*)|\0/, '')}", value)
                         end
                       else
-                        result = Struct.new(val[4], *val[9].map { |(k,v)| k.gsub(/(^\*)|\0/, '').to_sym }).new(*val[9].map { |(k,v)| v })
+                        klass_name = val[4].gsub(/^Struct::/, '')
+                        result     = Struct.new(klass_name, *val[9].map { |(k,v)| k.gsub(/(^\*)|\0/, '').to_sym }).new(*val[9].map { |(k,v)| v })
+                        result.instance_variable_set("@_php_class", klass_name)
                       end
                     
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'unserializer.y', 41)
+module_eval(<<'.,.,', 'unserializer.y', 43)
   def _reduce_14(val, _values, result)
      result = val[0] << val[1] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'unserializer.y', 42)
+module_eval(<<'.,.,', 'unserializer.y', 44)
   def _reduce_15(val, _values, result)
      result = [] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'unserializer.y', 45)
+module_eval(<<'.,.,', 'unserializer.y', 47)
   def _reduce_16(val, _values, result)
      @numeric_array = false unless val[0].is_a?(Integer); result = [val[0], val[1]] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'unserializer.y', 48)
+module_eval(<<'.,.,', 'unserializer.y', 50)
   def _reduce_17(val, _values, result)
      @numeric_array = true 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'unserializer.y', 50)
+module_eval(<<'.,.,', 'unserializer.y', 52)
   def _reduce_18(val, _values, result)
                           if @numeric_array
                         result = []

@@ -27,14 +27,16 @@ rule
                   
   object          : 'O' ':' NUMBER ':' STRING ':' NUMBER ':' '{' attribute_list '}' 
                     { 
-                      if Object.const_defined?(val[4])
+                      if eval("defined?(#{val[4]})")
                         result = Object.const_get(val[4]).new
                         
                         val[9].each do |(attr_name, value)|
                           result.instance_variable_set("@#{attr_name.gsub(/(^\*)|\0/, '')}", value)
                         end
                       else
-                        result = Struct.new(val[4], *val[9].map { |(k,v)| k.gsub(/(^\*)|\0/, '').to_sym }).new(*val[9].map { |(k,v)| v })
+                        klass_name = val[4].gsub(/^Struct::/, '')
+                        result     = Struct.new(klass_name, *val[9].map { |(k,v)| k.gsub(/(^\*)|\0/, '').to_sym }).new(*val[9].map { |(k,v)| v })
+                        result.instance_variable_set("@_php_class", klass_name)
                       end
                     }
                   ;

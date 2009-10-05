@@ -23,6 +23,11 @@ module PhpSerialization
         "a:#{object.length}:{#{items}}"
       else
         klass_name = object.class.name
+        
+        if klass_name =~ /^Struct::/ && php_klass = object.instance_variable_get("@_php_class")
+          klass_name = php_klass
+        end
+        
         attributes = object.instance_variables.map { |var_name| "#{run(var_name.gsub(/^@/, ''))}#{run(object.instance_variable_get(var_name))}" }
         "O:#{klass_name.length}:\"#{klass_name}\":#{object.instance_variables.length}:{#{attributes}}"
       end
