@@ -26,11 +26,11 @@ describe "Serialization" do
   end
   
   it "should unzerialize an array" do
-    PhpSerialization.dump([true, "foo"]).should == 'a:2:{i:0;b:1;i:1;s:3:"foo";};'
+    PhpSerialization.dump([true, "foo"]).should == 'a:2:{i:0;b:1;i:1;s:3:"foo";}'
   end
   
   it "should serialize a hash" do
-    PhpSerialization.dump("name" => "Rodrigo", "age" => 23).should == 'a:2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;};'
+    PhpSerialization.dump("name" => "Rodrigo", "age" => 23).should == 'a:2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;}'
   end
   
   it "should serialize object with class existant" do
@@ -42,7 +42,7 @@ describe "Serialization" do
     person.name = "Rodrigo"
     person.age  = 23
     
-    PhpSerialization.dump(person).should == 'O:6:"Person":2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;};'
+    PhpSerialization.dump(person).should == 'O:6:"Person":2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;}'
     
     Object.send(:remove_const, :Person)
   end

@@ -31,7 +31,7 @@ module PhpSessionSerialization
     def load(str)
       hash = {}
       
-      while str =~ /^([^|]+)\|(.*?;)(?=[^;|]+\||$)/
+      while str =~ /^([^|]+)\|(.*?[;}])(?=[^;}|]+\||$)/
         hash[$1] = PhpSerialization.load($2)
         str = $'
       end

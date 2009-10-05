@@ -1,16 +1,13 @@
 class PhpSerialization::Unserializer
 rule
 
-  serialization   : data ';' { @object = val[0] }
-                  ;
-                
-  data            : null     { result = val[0] }
-                  | bool     { result = val[0] }
-                  | integer  { result = val[0] }
-                  | double   { result = val[0] }
-                  | array    { result = val[0] }
-                  | string   { result = val[0] }
-                  | object   { result = val[0] }
+  data            : null    ';'  { @object = val[0] }
+                  | bool    ';'  { @object = val[0] }
+                  | integer ';'  { @object = val[0] }
+                  | double  ';'  { @object = val[0] }
+                  | string  ';'  { @object = val[0] }
+                  | array        { @object = val[0] }
+                  | object       { @object = val[0] }
                   ;          
                   
   null            : 'N' { result = nil }
@@ -46,7 +43,7 @@ rule
                   |                           { result = [] }
                   ;
 
-  attribute       : data ';' data  ';'  { @numeric_array = false unless val[0].is_a?(Integer); result = [val[0], val[2]] }
+  attribute       : data data { @numeric_array = false unless val[0].is_a?(Integer); result = [val[0], val[1]] }
                   ;
                                     
   array           : 'a' ':' NUMBER ':' '{' { @numeric_array = true } attribute_list '}' 

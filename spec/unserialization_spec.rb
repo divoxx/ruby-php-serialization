@@ -22,29 +22,28 @@ describe "Unserialization" do
   end
   
   it "should unzerialize an array" do
-    PhpSerialization.load('a:2:{i:0;b:1;i:1;s:3:"foo";};').should == [true, "foo"]
+    PhpSerialization.load('a:2:{i:0;b:1;i:1;s:3:"foo";}').should == [true, "foo"]
   end
   
   it "should unserialize a hash" do
-    PhpSerialization.load('a:2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;};').should == {"name" => "Rodrigo", "age" => 23}
+    PhpSerialization.load('a:2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;}').should == {"name" => "Rodrigo", "age" => 23}
   end
   
   it "should unserialize object with class existant" do
     class Person
-      attr_accessor :name, :age
+      attr_accessor :name, :age, :gender
     end
     
-    person = PhpSerialization.load('O:6:"Person":2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;};')
+    person = PhpSerialization.load('O:6:"Person":2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;}')
     person.should be_instance_of(Person)
     person.name.should == "Rodrigo"
     person.age.should == 23
-    
     
     Object.send(:remove_const, :Person)
   end
   
   it "should unserialize object without class as a struct" do
-    person = PhpSerialization.load('O:6:"Person":2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;};')
+    person = PhpSerialization.load('O:6:"Person":2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;}')
     person.should be_instance_of(Struct::Person)
     person.name.should == "Rodrigo"
     person.age.should == 23
