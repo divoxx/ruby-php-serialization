@@ -9,6 +9,10 @@ describe "Serialization" do
     PhpSerialization.dump("Name").should == 's:4:"Name";'
   end
   
+  it "should serialize a symbol string" do
+    PhpSerialization.dump(:name).should == 's:4:"name";'
+  end
+  
   it "should serialize true" do
     PhpSerialization.dump(true).should == 'b:1;'
   end

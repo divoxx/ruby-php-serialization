@@ -12,8 +12,8 @@ module PhpSerialization
         "i:#{object};"
       when Float then
         "d:#{object};"
-      when String then
-        "s:#{object.length}:\"#{object}\";"
+      when String, Symbol then
+        "s:#{object.to_s.length}:\"#{object}\";"
       when Array then
         idx   = -1
         items = object.map { |item| "#{run(idx += 1)}#{run(item)}" }.join
