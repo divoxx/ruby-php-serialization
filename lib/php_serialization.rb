@@ -25,3 +25,24 @@ module PhpSerialization
     alias :serialize :dump
   end
 end
+
+module PhpSessionSerialization
+  class << self
+    def load(str)
+      hash = {}
+      
+      while str =~ /^([^|]+)\|(.*?;)(?=[^;|]+\||$)/
+        hash[$1] = PhpSerialization.load($2)
+        str = $'
+      end
+      
+      hash
+    end
+    
+    def dump(hash)
+      str = ""
+      hash.each { |key,value| str << "#{key}|#{PhpSerialization.dump(value)}" }
+      str
+    end
+  end
+end
