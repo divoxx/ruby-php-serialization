@@ -65,16 +65,12 @@ end
 ---- header ----
 require 'php_serialization/tokenizer'
 
----- inner ----
-  def self.load(string)
-    new.load(string)
-  end
-  
+---- inner ----  
   def initialize(tokenizer_klass = Tokenizer)
     @tokenizer_klass = tokenizer_klass
   end
   
-  def load(string)
+  def run(string)
     @tokenizer = @tokenizer_klass.new(string)
     yyparse(@tokenizer, :each)
     return @object

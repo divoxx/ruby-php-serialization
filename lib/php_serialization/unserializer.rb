@@ -12,15 +12,11 @@ module PhpSerialization
   class Unserializer < Racc::Parser
 
 module_eval(<<'...end unserializer.y/module_eval...', 'unserializer.y', 69)
-  def self.load(string)
-    new.load(string)
-  end
-  
   def initialize(tokenizer_klass = Tokenizer)
     @tokenizer_klass = tokenizer_klass
   end
   
-  def load(string)
+  def run(string)
     @tokenizer = @tokenizer_klass.new(string)
     yyparse(@tokenizer, :each)
     return @object
