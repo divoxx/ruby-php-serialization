@@ -13,11 +13,11 @@ Primitive values
   
 Array
 
-  PhpSerialization.dump([true, "foo"]) # => "a:2:{i:0;b:1;i:1;s:3:\"foo\";};"
+  PhpSerialization.dump([true, "foo"]) # => "a:2:{i:0;b:1;i:1;s:3:\"foo\";}"
   
 Hash
 
-  PhpSerialization.dump("name" => "Rodrigo", "age" => 23) # => "a:2:{s:4:\"name\";s:7:\"Rodrigo\";s:3:\"age\";i:23;};"
+  PhpSerialization.dump("name" => "Rodrigo", "age" => 23) # => "a:2:{s:4:\"name\";s:7:\"Rodrigo\";s:3:\"age\";i:23;}"
   
 Object
 
@@ -29,7 +29,7 @@ Object
   person.name = "Rodrigo"
   person.age  = 23
   
-  PhpSerialization.dump(person) # => "O:6:\"Person\":2:{s:4:\"name\";s:7:\"Rodrigo\";s:3:\"age\";i:23;};"
+  PhpSerialization.dump(person) # => "O:6:\"Person\":2:{s:4:\"name\";s:7:\"Rodrigo\";s:3:\"age\";i:23;}"
 
 == Unserialization examples
 
@@ -42,11 +42,11 @@ Primitive values
   
 Array
 
-  PhpSerialization.load('a:2:{i:0;b:1;i:1;s:3:"foo";};') # => [true, "foo"]
+  PhpSerialization.load('a:2:{i:0;b:1;i:1;s:3:"foo";}') # => [true, "foo"]
   
 Hash
 
-  PhpSerialization.load('a:2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;};') # => {"name" => "Rodrigo", "age" => 23}
+  PhpSerialization.load('a:2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;}') # => {"name" => "Rodrigo", "age" => 23}
   
 Object
 
@@ -54,13 +54,13 @@ Object
     attr_accessor :name, :age
   end
   
-  person = PhpSerialization.load('O:6:"Person":2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;};')
+  person = PhpSerialization.load('O:6:"Person":2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;}')
   person.name # => "Rodrigo"
   person.age  # => 23
   
 Object without class will map to a Struct
 
-  person = PhpSerialization.load('O:6:"Person":2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;};')
+  person = PhpSerialization.load('O:6:"Person":2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;}')
   person.class # => Struct::Person
   person.name  # => "Rodrigo"
   person.age   # => 23
