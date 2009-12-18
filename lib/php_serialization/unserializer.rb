@@ -11,7 +11,7 @@ require 'php_serialization/tokenizer'
 module PhpSerialization
   class Unserializer < Racc::Parser
 
-module_eval(<<'...end unserializer.y/module_eval...', 'unserializer.y', 68)
+module_eval(<<'...end unserializer.y/module_eval...', 'unserializer.y', 69)
   def initialize(tokenizer_klass = Tokenizer)
     @tokenizer_klass = tokenizer_klass
   end
@@ -317,7 +317,8 @@ module_eval(<<'.,.,', 'unserializer.y', 52)
                         result = []
                         val[6].each { |(i,v)| result[i] = v }
                       else
-                        result = Hash[*val[6].flatten]
+                        result = {}
+                        val[6].each { |(k, v)| result[k] = v}
                       end
                     
     result

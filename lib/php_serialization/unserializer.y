@@ -54,7 +54,8 @@ rule
                         result = []
                         val[6].each { |(i,v)| result[i] = v }
                       else
-                        result = Hash[*val[6].flatten]
+                        result = {}
+                        val[6].each { |(k, v)| result[k] = v}
                       end
                     }
                   ;
