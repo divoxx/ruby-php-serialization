@@ -48,4 +48,13 @@ describe "Unserialization" do
     person.name.should == "Rodrigo"
     person.age.should == 23
   end
+
+  it "should unserialize a string with double quotes" do
+    PhpSerialization.load('s:12:"new "Year"";').should == "new \"Year\""
+  end
+
+  it "should unserialize a string with double quotes in the middle" do
+    PhpSerialization.load("a:3:{i:0;s:4:\"test\";i:1;s:27:\"string with \"quotes\" inside\";s:2:\"in\";s:15:\"middle of array\";}").should == {0 => 'test',1 => 'string with "quotes" inside', 'in' => 'middle of array'}
+  end
+
 end
