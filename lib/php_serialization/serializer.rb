@@ -28,7 +28,7 @@ module PhpSerialization
           klass_name = php_klass
         end
 
-        attributes = object.instance_variables.map { |var_name| "#{run(var_name.to_s.gsub(/^@/, ''))}#{run(object.instance_variable_get(var_name))}" }
+        attributes = object.instance_variables.sort.map { |var_name| "#{run(var_name.to_s.gsub(/^@/, ''))}#{run(object.instance_variable_get(var_name))}" }
         "O:#{klass_name.length}:\"#{klass_name}\":#{object.instance_variables.length}:{#{attributes.join}}"
       end
     end

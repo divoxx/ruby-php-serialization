@@ -42,7 +42,7 @@ RSpec.describe PhpSerialization::Serializer do
     person.name = "Rodrigo"
     person.age  = 23
 
-    expect(subject.run(person)).to eq('O:6:"Person":2:{s:4:"name";s:7:"Rodrigo";s:3:"age";i:23;}')
+    expect(subject.run(person)).to eq("O:6:\"Person\":2:{s:3:\"age\";i:23;s:4:\"name\";s:7:\"Rodrigo\";}")
 
     Object.send(:remove_const, :Person)
   end
