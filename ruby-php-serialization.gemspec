@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'php_serialization/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "php-serialization"
+  spec.name          = "ruby-php-serialization"
   spec.version       = PhpSerialization::VERSION
   spec.authors       = ["Rodrigo Kochenburger"]
   spec.email         = ["divoxx@gmail.com"]
