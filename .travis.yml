@@ -9,3 +9,4 @@ rvm:
   - jruby-19mode
   - rbx-2
   - ree
+script: ./bin/rspec
