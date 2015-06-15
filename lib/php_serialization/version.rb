@@ -1,7 +1,3 @@
-module Ruby
-  module Php
-    module Serialization
-      VERSION = "0.5.3"
-    end
-  end
+module PhpSerialization
+  VERSION = "1.0.0"
 end

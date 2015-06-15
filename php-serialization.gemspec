@@ -4,8 +4,8 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'php_serialization/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "ruby-php-serialization"
-  spec.version       = Ruby::Php::Serialization::VERSION
+  spec.name          = "php-serialization"
+  spec.version       = PhpSerialization::VERSION
   spec.authors       = ["Rodrigo Kochenburger"]
   spec.email         = ["divoxx@gmail.com"]
   spec.summary       = %q{Pure Ruby implementation of php's methods: serialize() and unserializer()}
@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
