@@ -1,0 +1,503 @@
+
+
+-------- Grammar --------
+
+rule 1 data: null ";"
+rule 2 data: bool ";"
+rule 3 data: integer ";"
+rule 4 data: double ";"
+rule 5 data: string ";"
+rule 6 data: assoc_array
+rule 7 data: object
+rule 8 null: "N"
+rule 9 bool: "b" ":" NUMBER
+rule 10 integer: "i" ":" NUMBER
+rule 11 double: "d" ":" NUMBER
+rule 12 string: "s" ":" NUMBER ":" STRING
+rule 13 object: "O" ":" NUMBER ":" STRING ":" NUMBER ":" "{" attribute_list "}"
+rule 14 attribute_list: attribute_list attribute
+rule 15 attribute_list: 
+rule 16 attribute: data data
+rule 17 assoc_array: "a" ":" NUMBER ":" "{" attribute_list "}"
+
+------- Symbols -------
+
+**Nonterminals, with rules where they appear
+
+  $start (15)
+    on right: 
+    on left : 
+  data (16)
+    on right: 16
+    on left : 1 2 3 4 5 6 7
+  null (17)
+    on right: 1
+    on left : 8
+  bool (18)
+    on right: 2
+    on left : 9
+  integer (19)
+    on right: 3
+    on left : 10
+  double (20)
+    on right: 4
+    on left : 11
+  string (21)
+    on right: 5
+    on left : 12
+  assoc_array (22)
+    on right: 6
+    on left : 17
+  object (23)
+    on right: 7
+    on left : 13
+  attribute_list (24)
+    on right: 13 14 17
+    on left : 14 15
+  attribute (25)
+    on right: 14
+    on left : 16
+
+**Terminals, with rules where they appear
+
+  $end (0) 
+  error (1) 
+  ";" (2) 1 2 3 4 5
+  "N" (3) 8
+  "b" (4) 9
+  ":" (5) 9 10 11 12 13 17
+  NUMBER (6) 9 10 11 12 13 17
+  "i" (7) 10
+  "d" (8) 11
+  "s" (9) 12
+  STRING (10) 12 13
+  "O" (11) 13
+  "{" (12) 13 17
+  "}" (13) 13 17
+  "a" (14) 17
+
+--------- State ---------
+
+state 0
+
+
+  "N"           shift, and go to state 9
+  "b"           shift, and go to state 10
+  "i"           shift, and go to state 11
+  "d"           shift, and go to state 12
+  "s"           shift, and go to state 13
+  "O"           shift, and go to state 14
+  "a"           shift, and go to state 15
+
+  data          go to state 1
+  null          go to state 2
+  bool          go to state 3
+  integer       go to state 4
+  double        go to state 5
+  string        go to state 6
+  assoc_array   go to state 7
+  object        go to state 8
+
+state 1
+
+
+  $end          shift, and go to state 16
+
+
+state 2
+
+   1) data : null _ ";"
+
+  ";"           shift, and go to state 17
+
+
+state 3
+
+   2) data : bool _ ";"
+
+  ";"           shift, and go to state 18
+
+
+state 4
+
+   3) data : integer _ ";"
+
+  ";"           shift, and go to state 19
+
+
+state 5
+
+   4) data : double _ ";"
+
+  ";"           shift, and go to state 20
+
+
+state 6
+
+   5) data : string _ ";"
+
+  ";"           shift, and go to state 21
+
+
+state 7
+
+   6) data : assoc_array _
+
+  $default      reduce using rule 6 (data)
+
+
+state 8
+
+   7) data : object _
+
+  $default      reduce using rule 7 (data)
+
+
+state 9
+
+   8) null : "N" _
+
+  $default      reduce using rule 8 (null)
+
+
+state 10
+
+   9) bool : "b" _ ":" NUMBER
+
+  ":"           shift, and go to state 22
+
+
+state 11
+
+  10) integer : "i" _ ":" NUMBER
+
+  ":"           shift, and go to state 23
+
+
+state 12
+
+  11) double : "d" _ ":" NUMBER
+
+  ":"           shift, and go to state 24
+
+
+state 13
+
+  12) string : "s" _ ":" NUMBER ":" STRING
+
+  ":"           shift, and go to state 25
+
+
+state 14
+
+  13) object : "O" _ ":" NUMBER ":" STRING ":" NUMBER ":" "{" attribute_list "}"
+
+  ":"           shift, and go to state 26
+
+
+state 15
+
+  17) assoc_array : "a" _ ":" NUMBER ":" "{" attribute_list "}"
+
+  ":"           shift, and go to state 27
+
+
+state 16
+
+
+  $end          shift, and go to state 28
+
+
+state 17
+
+   1) data : null ";" _
+
+  $default      reduce using rule 1 (data)
+
+
+state 18
+
+   2) data : bool ";" _
+
+  $default      reduce using rule 2 (data)
+
+
+state 19
+
+   3) data : integer ";" _
+
+  $default      reduce using rule 3 (data)
+
+
+state 20
+
+   4) data : double ";" _
+
+  $default      reduce using rule 4 (data)
+
+
+state 21
+
+   5) data : string ";" _
+
+  $default      reduce using rule 5 (data)
+
+
+state 22
+
+   9) bool : "b" ":" _ NUMBER
+
+  NUMBER        shift, and go to state 29
+
+
+state 23
+
+  10) integer : "i" ":" _ NUMBER
+
+  NUMBER        shift, and go to state 30
+
+
+state 24
+
+  11) double : "d" ":" _ NUMBER
+
+  NUMBER        shift, and go to state 31
+
+
+state 25
+
+  12) string : "s" ":" _ NUMBER ":" STRING
+
+  NUMBER        shift, and go to state 32
+
+
+state 26
+
+  13) object : "O" ":" _ NUMBER ":" STRING ":" NUMBER ":" "{" attribute_list "}"
+
+  NUMBER        shift, and go to state 33
+
+
+state 27
+
+  17) assoc_array : "a" ":" _ NUMBER ":" "{" attribute_list "}"
+
+  NUMBER        shift, and go to state 34
+
+
+state 28
+
+
+  $default      accept
+
+
+state 29
+
+   9) bool : "b" ":" NUMBER _
+
+  $default      reduce using rule 9 (bool)
+
+
+state 30
+
+  10) integer : "i" ":" NUMBER _
+
+  $default      reduce using rule 10 (integer)
+
+
+state 31
+
+  11) double : "d" ":" NUMBER _
+
+  $default      reduce using rule 11 (double)
+
+
+state 32
+
+  12) string : "s" ":" NUMBER _ ":" STRING
+
+  ":"           shift, and go to state 35
+
+
+state 33
+
+  13) object : "O" ":" NUMBER _ ":" STRING ":" NUMBER ":" "{" attribute_list "}"
+
+  ":"           shift, and go to state 36
+
+
+state 34
+
+  17) assoc_array : "a" ":" NUMBER _ ":" "{" attribute_list "}"
+
+  ":"           shift, and go to state 37
+
+
+state 35
+
+  12) string : "s" ":" NUMBER ":" _ STRING
+
+  STRING        shift, and go to state 38
+
+
+state 36
+
+  13) object : "O" ":" NUMBER ":" _ STRING ":" NUMBER ":" "{" attribute_list "}"
+
+  STRING        shift, and go to state 39
+
+
+state 37
+
+  17) assoc_array : "a" ":" NUMBER ":" _ "{" attribute_list "}"
+
+  "{"           shift, and go to state 40
+
+
+state 38
+
+  12) string : "s" ":" NUMBER ":" STRING _
+
+  $default      reduce using rule 12 (string)
+
+
+state 39
+
+  13) object : "O" ":" NUMBER ":" STRING _ ":" NUMBER ":" "{" attribute_list "}"
+
+  ":"           shift, and go to state 41
+
+
+state 40
+
+  17) assoc_array : "a" ":" NUMBER ":" "{" _ attribute_list "}"
+
+  $default      reduce using rule 15 (attribute_list)
+
+  attribute_list  go to state 42
+
+state 41
+
+  13) object : "O" ":" NUMBER ":" STRING ":" _ NUMBER ":" "{" attribute_list "}"
+
+  NUMBER        shift, and go to state 43
+
+
+state 42
+
+  14) attribute_list : attribute_list _ attribute
+  17) assoc_array : "a" ":" NUMBER ":" "{" attribute_list _ "}"
+
+  "N"           shift, and go to state 9
+  "b"           shift, and go to state 10
+  "i"           shift, and go to state 11
+  "d"           shift, and go to state 12
+  "s"           shift, and go to state 13
+  "O"           shift, and go to state 14
+  "}"           shift, and go to state 46
+  "a"           shift, and go to state 15
+
+  null          go to state 2
+  bool          go to state 3
+  integer       go to state 4
+  double        go to state 5
+  string        go to state 6
+  assoc_array   go to state 7
+  object        go to state 8
+  attribute     go to state 44
+  data          go to state 45
+
+state 43
+
+  13) object : "O" ":" NUMBER ":" STRING ":" NUMBER _ ":" "{" attribute_list "}"
+
+  ":"           shift, and go to state 47
+
+
+state 44
+
+  14) attribute_list : attribute_list attribute _
+
+  $default      reduce using rule 14 (attribute_list)
+
+
+state 45
+
+  16) attribute : data _ data
+
+  "N"           shift, and go to state 9
+  "b"           shift, and go to state 10
+  "i"           shift, and go to state 11
+  "d"           shift, and go to state 12
+  "s"           shift, and go to state 13
+  "O"           shift, and go to state 14
+  "a"           shift, and go to state 15
+
+  null          go to state 2
+  bool          go to state 3
+  integer       go to state 4
+  double        go to state 5
+  string        go to state 6
+  assoc_array   go to state 7
+  object        go to state 8
+  data          go to state 48
+
+state 46
+
+  17) assoc_array : "a" ":" NUMBER ":" "{" attribute_list "}" _
+
+  $default      reduce using rule 17 (assoc_array)
+
+
+state 47
+
+  13) object : "O" ":" NUMBER ":" STRING ":" NUMBER ":" _ "{" attribute_list "}"
+
+  "{"           shift, and go to state 49
+
+
+state 48
+
+  16) attribute : data data _
+
+  $default      reduce using rule 16 (attribute)
+
+
+state 49
+
+  13) object : "O" ":" NUMBER ":" STRING ":" NUMBER ":" "{" _ attribute_list "}"
+
+  $default      reduce using rule 15 (attribute_list)
+
+  attribute_list  go to state 50
+
+state 50
+
+  13) object : "O" ":" NUMBER ":" STRING ":" NUMBER ":" "{" attribute_list _ "}"
+  14) attribute_list : attribute_list _ attribute
+
+  "N"           shift, and go to state 9
+  "b"           shift, and go to state 10
+  "i"           shift, and go to state 11
+  "d"           shift, and go to state 12
+  "s"           shift, and go to state 13
+  "O"           shift, and go to state 14
+  "}"           shift, and go to state 51
+  "a"           shift, and go to state 15
+
+  null          go to state 2
+  bool          go to state 3
+  integer       go to state 4
+  double        go to state 5
+  string        go to state 6
+  assoc_array   go to state 7
+  object        go to state 8
+  attribute     go to state 44
+  data          go to state 45
+
+state 51
+
+  13) object : "O" ":" NUMBER ":" STRING ":" NUMBER ":" "{" attribute_list "}" _
+
+  $default      reduce using rule 13 (object)
+

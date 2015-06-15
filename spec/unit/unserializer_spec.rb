@@ -56,4 +56,12 @@ RSpec.describe PhpSerialization::Unserializer do
   it "should unserialize a string with double quotes in the middle" do
     expect(subject.run("a:3:{i:0;s:4:\"test\";i:1;s:27:\"string with \"quotes\" inside\";s:2:\"in\";s:15:\"middle of array\";}")).to eq(0 => 'test',1 => 'string with "quotes" inside', 'in' => 'middle of array')
   end
+
+  it "should unserialize a tricky hash that pretends being an array" do
+    expect(subject.run('a:1:{i:2;i:3;}')).to eq(2 => 3)
+  end
+
+  it "should unserialize a multi-dimensional mixed array/hash" do
+    expect(subject.run('a:1:{i:0;a:2:{i:14;a:1:{i:0;i:2;}i:15;a:1:{i:0;i:3;}}}')).to eq [{14=>[2], 15=>[3]}]
+  end
 end
